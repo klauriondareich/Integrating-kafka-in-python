@@ -1,17 +1,5 @@
-from kafka import KafkaConsumer
-from json import loads
-from __init__ import collection
+# Import the ProducerAndConsumer and call the producer_run method to make it run
+from pub_sub import ProducerAndConsumer
 
-consumer = KafkaConsumer(
-    'my_topic',
-    bootstrap_servers=['localhost:9092'],
-    auto_offset_reset='earliest',
-    enable_auto_commit=True,
-    group_id='group_one',
-    value_deserializer=lambda x: loads(x.decode('utf-8'))
-    )
-
-for message in consumer:
-    message = message.value
-    print('new message: ', message)
-#     collection.insert_one(message)
+consumer = ProducerAndConsumer()
+consumer.consumer_run()
