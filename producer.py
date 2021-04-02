@@ -1,11 +1,5 @@
-from time import sleep
-from json import dumps
-from kafka import KafkaProducer
+# Import the ProducerAndConsumer and call the producer_run method to make it run
+from pub_sub import ProducerAndConsumer
 
-producer = KafkaProducer(bootstrap_servers=['localhost:9092'], 
-value_serializer=lambda x: dumps(x).encode('utf-8'))
-
-data = "start"
-while data != "exit":
-    data = input("message me :")
-    producer.send('my_topic', value=data)
+producer = ProducerAndConsumer()
+producer.producer_run()
